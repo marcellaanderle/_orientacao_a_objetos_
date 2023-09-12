@@ -1,0 +1,11 @@
+classe forma_geometrica{
+	inteiro quantidade_lado
+	inteiro[] valor_lados
+	string nome
+
+	funcao area()
+	funcao volume()
+}
+
+variavel triangulo = forma_geometrica(3, 'triangulo')
+variavel quadrado = forma_geometrica(4, 'quadrado')
