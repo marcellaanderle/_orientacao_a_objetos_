@@ -1,11 +1,55 @@
-classe forma_geometrica{
-	inteiro quantidade_lado
-	inteiro[] valor_lados
-	string nome
 
-	funcao area()
-	funcao volume()
+classe geometrica {    // Classe pai
+    inteiro quantidade_lados
+    inteiro[] valor_lados
+    string nome
+
+    funcao area()
+    funcao volume()
 }
 
-variavel triangulo = forma_geometrica(3, 'triangulo')
-variavel quadrado = forma_geometrica(4, 'quadrado')
+classe circulo estende geometrica {
+    real raio
+    nome = 'circulo'
+
+    funcao area() {
+        retorno 3.14 * raio * raio
+    }
+}
+
+classe triangulo estende geometrica {
+	quantidade_lados = 3
+	nome = 'triângulo'
+}
+
+principal() {
+	
+
+	variavel triangulo = triangulo([10, 10, 10])
+	variavel quadrado = geometrica(4, [5, 5, 5, 5], 'quadrado')
+	variavel circulo = circulo(0)
+	circulo.raio = 7.5
+	variavel poligono = geometrica(5, [6, 6, 6, 6, 6], 'pentágono')
+	poligono.quantidade_lados = 5
+	
+	escreva("Área do círculo: ", circulo.area())
+	escreva("Área do pentágono: ", poligono.area())
+
+	escreva("Digite o  numero de lados da forma geometrica")
+	int n_lados 
+        leia(n_lados)
+
+	escreva("Digite o  valor dos lados separados por vírgula")
+	inteiro[] valor_lados;
+	leia(valor_lados)
+
+	escreva("Digite o nome da forma geometrica")
+	string nome
+	leia(nome)
+	
+	variavel forma_inserida = geometrica(n_lados, valor_lados, nome);
+	escreva("Voce criou uma forma geometrica com a seguinte caracteristica:")
+	escreva("quantidade de lados: ", forma_inserida.quantidade_lados)
+	escreva("valor dos lados: ", forma_inserida.valor_lados)
+	escreva("nome: ", forma_inserida.nome)
+}
