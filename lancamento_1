@@ -5,7 +5,7 @@ classe geometrica {    // Classe pai
     string nome
 
     funcao area()
-    funcao volume()
+  
 }
 
 classe circulo estende geometrica {
