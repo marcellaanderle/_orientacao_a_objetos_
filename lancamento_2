@@ -1,5 +1,4 @@
-class Geometrica: #classe pai
-    #inicilizando a instância
+class Geometrica:
     def __init__(self, quantidade_lados, valor_lados, nome):
         self.quantidade_lados = quantidade_lados
         self.valor_lados = valor_lados
@@ -10,42 +9,65 @@ class Geometrica: #classe pai
 
 class Circulo(Geometrica):
     def __init__(self, raio):
-    #definindo um novo comportamento
-        super().__init__(0,[],'circulo')
+        super().__init__(0, [], 'círculo')
         self.raio = raio
 
     def area(self):
-        return (3.14 * self.raio * self.raio)
+        return 3.14 * self.raio * self.raio
+
 class Triangulo(Geometrica):
-    def __init__(self):
+    def __init__(self, base, altura):
         super().__init__(3, [], 'triângulo')
+        self.base = base
+        self.altura = altura
+
+    def area(self):
+        return 0.5 * self.base * self.altura
+
+class Quadrado(Geometrica):
+    def __init__(self, lado):
+        super().__init__(4, [lado, lado, lado, lado], 'quadrado')
+
+    def area(self):
+        return self.valor_lados[0] ** 2
+
+class Poligono(Geometrica):
+    def __init__(self, quantidade_lados, valor_lados, nome):
+        super().__init__(quantidade_lados, valor_lados, nome)
+
+    def area(self):
+        # Você precisaria implementar um cálculo de área para polígonos genéricos aqui
+        pass
 
 def main():
-    triangulo = Triangulo()
-    quadrado = Geometrica(4, [5, 5, 5, 5], 'quadrado')
-    circulo = Circulo(0)
-    circulo.raio = 7.5
-    poligono = Geometrica(5, [6, 6, 6, 6, 6], 'pentágono')
-    poligono.quanidade_lados = 5
+    print("Escolha uma forma geométrica:")
+    print("1. Círculo")
+    print("2. Triângulo")
+    print("3. Quadrado")
+    print("4. Polígono genérico")
 
-    print("A área do círculo é:", circulo.area())
-    print("A área do pentágono é:", poligono.area())
+    escolha = int(input())
 
-    print("Digite o número de lados")
-    n_lados = int(input())
+    if escolha == 1:
+        raio = float(input("Digite o raio do círculo: "))
+        forma = Circulo(raio)
+    elif escolha == 2:
+        base = float(input("Digite a base do triângulo: "))
+        altura = float(input("Digite a altura do triângulo: "))
+        forma = Triangulo(base, altura)
+    elif escolha == 3:
+        lado = float(input("Digite o lado do quadrado: "))
+        forma = Quadrado(lado)
+    elif escolha == 4:
+        quantidade_lados = int(input("Digite a quantidade de lados do polígono: "))
+        valor_lados = list(map(float, input("Digite os valores dos lados separados por vírgula: ").split(",")))
+        nome = input("Digite o nome do polígono: ")
+        forma = Poligono(quantidade_lados, valor_lados, nome)
+    else:
+        print("Escolha inválida")
+        return
 
-    print("Digite o valor dos lados separados por vírgula:")
-    valor_lados = list(map(int, input().split(",")))
-
-    print("Por fim, digite o nome da forma geométrica:")
-    nome = input()
-
-    forma_inserida = Geometrica(n_lados, valor_lados, nome)
-    print("Quantidade de lados:", forma_inserida.quantidade_lados)
-    print("Valor dos lados:", forma_inserida.valor_lados)
-    print("Nome:", forma_inserida.nome)
-
+    print("Área da forma selecionada:", forma.area())
 
 if __name__ == "__main__":
     main()
-
